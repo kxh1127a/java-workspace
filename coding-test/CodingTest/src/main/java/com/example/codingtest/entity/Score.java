@@ -23,4 +23,7 @@ public class Score {
 
     @Column(nullable = false)
     private Long grade;
+
+    @Column(nullable = false)
+    private boolean isView;
 }

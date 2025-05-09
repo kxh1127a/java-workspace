@@ -3,10 +3,7 @@ package com.example.codingtest.controller;
 import com.example.codingtest.entity.Question;
 import com.example.codingtest.entity.Student;
 import com.example.codingtest.entity.Subject;
-import com.example.codingtest.model.QuestionCreateRequest;
-import com.example.codingtest.model.QuestionItem;
-import com.example.codingtest.model.StudentCreateRequest;
-import com.example.codingtest.model.SubjectCreateRequest;
+import com.example.codingtest.model.*;
 import com.example.codingtest.repository.SubjectRepository;
 import com.example.codingtest.service.QuestionService;
 import com.example.codingtest.service.ScoreService;
@@ -55,10 +52,24 @@ public class CodingTestController {
 
     @GetMapping("/subject/{id}")
     public List<QuestionItem> getQuestions(@PathVariable Long id) {
-
         return questionService.getQuestions(subjectService.getSubject(id));
     }
 
+    @GetMapping("/score/{id}")
+    public List<ScoreItem> getScores(@PathVariable long id) {
+        return scoreService.getScores(id);
+    }
+
+    @GetMapping("/score")
+    public ScoreItemByBoth getScoresByBoth(@RequestParam long questionId,
+                                                 @RequestParam long studentId) {
+        return scoreService.getScoresByBoth(questionId, studentId);
+    }
+
+    @GetMapping("/score/total/{id}")
+    public List<ScoreItemTotal> getScoreTotal (@PathVariable long id) {
+        return scoreService.getScoreTotal(id);
+    }
 
 
 }
