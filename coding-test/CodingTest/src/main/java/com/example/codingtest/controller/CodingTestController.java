@@ -10,9 +10,11 @@ import com.example.codingtest.service.ScoreService;
 import com.example.codingtest.service.StudentService;
 import com.example.codingtest.service.SubjectService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -40,14 +42,17 @@ public class CodingTestController {
         questionService.setQuestion(subject, request.getContent());
     }
 
+    @CrossOrigin(origins = "http://192.168.0.60:3000")
     @PostMapping("/score")
-    public void setScore(@RequestParam Long studentId,
-                         @RequestParam Long questionId,
-                         @RequestParam Long grade) {
+    public ResponseEntity<String> setScore(@RequestParam Long studentId,
+                                   @RequestParam Long questionId,
+                                   @RequestParam Long grade) {
         Student student = studentService.getStudent(studentId);
         Question question = questionService.getQuestion(questionId);
 
         scoreService.setScore(student, question, grade);
+
+        return ResponseEntity.ok("{\"status\": \"success\"}");
     }
 
     @GetMapping("/subject/{id}")
@@ -69,6 +74,11 @@ public class CodingTestController {
     @GetMapping("/score/total/{id}")
     public List<ScoreItemTotal> getScoreTotal (@PathVariable long id) {
         return scoreService.getScoreTotal(id);
+    }
+
+    @GetMapping("/all")
+    public List<Map<String, Object>> getTest() {
+        return scoreService.getAll();
     }
 
 

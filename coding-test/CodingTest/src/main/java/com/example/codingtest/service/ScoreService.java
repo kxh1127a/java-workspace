@@ -10,9 +10,8 @@ import com.example.codingtest.repository.ScoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -66,6 +65,31 @@ public class ScoreService {
 
             result.add(addItem);
         });
+        return result;
+    }
+
+    public List<Map<String, Object>> getAll() {
+        List<Score> target = scoreRepository.findAll();
+
+        List<Map<String, Object>> result = target.stream().map(element->{
+            Map<String, Object> addMap = new HashMap<>();
+
+            addMap.put("subject", Map.of(
+                    "name", element.getQuestion().getSubject().getId(),
+                    "language", element.getQuestion().getSubject().getLanguage()
+            ));
+            addMap.put("question", Map.of(
+                    "order", element.getQuestion().getId(),
+                    "title", element.getQuestion().getContent()
+            ));
+            addMap.put("student", Map.of(
+                    "id_no", element.getStudent().getId(),
+                    "name", element.getStudent().getName()
+            ));
+
+            return addMap;
+        }).toList();
+
         return result;
     }
 }
