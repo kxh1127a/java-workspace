@@ -18,7 +18,5 @@ public enum ResultCode {
     ;
 
     private final Integer code;
-    private final String msg;
-
-
+    private final String message;
 }
