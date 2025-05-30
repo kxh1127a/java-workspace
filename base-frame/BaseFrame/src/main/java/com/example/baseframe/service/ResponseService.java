@@ -2,8 +2,11 @@ package com.example.baseframe.service;
 
 import com.example.baseframe.enums.ResultCode;
 import com.example.baseframe.model.CommonResult;
+import com.example.baseframe.model.ListResult;
 import com.example.baseframe.model.SingleResult;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ResponseService {
@@ -11,6 +14,14 @@ public class ResponseService {
     public static <T> SingleResult<T> getSingleResult(T data) {
         SingleResult<T> result = new SingleResult<>();
         result.setData(data);
+        setResult(result, true, ResultCode.SUCCESS);
+
+        return result;
+    }
+
+    public static <T> ListResult<T> getListResult(List<T> list) {
+        ListResult<T> result = new ListResult<>();
+        result.setList(list);
         setResult(result, true, ResultCode.SUCCESS);
 
         return result;
