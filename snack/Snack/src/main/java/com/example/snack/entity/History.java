@@ -43,7 +43,7 @@ public class History {
         private final Snack snack;
         private final Integer amount;
         private final LocalDate dateIn;
-//        private LocalDate dateOut;
+        //        private LocalDate dateOut;
         private final boolean isSoldOut;
 
 
