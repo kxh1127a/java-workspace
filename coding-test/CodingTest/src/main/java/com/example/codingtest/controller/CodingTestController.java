@@ -81,5 +81,10 @@ public class CodingTestController {
         return scoreService.getAll();
     }
 
+    @GetMapping("/all/a1")
+    public List<Map<String, Object>> getTest1() {
+        return scoreService.getAll();
+    }
+
 
 }
