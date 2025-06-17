@@ -91,5 +91,9 @@ public class CodingTestController {
         return scoreService.getAll();
     }
 
+    @GetMapping("/all/a3")
+        public List<Map<String, Object>> getTest2() {
+        return scoreService.getAll();
+    }
 
 }
