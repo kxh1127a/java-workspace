@@ -97,8 +97,12 @@ public class CodingTestController {
     }
 
     @GetMapping("/all/a4")
-            public List<Map<String, Object>> getTest4() {
-            return scoreService.getAll();
-        }
+        public List<Map<String, Object>> getTest4() {
+        return scoreService.getAll();
+    }
 
+    @GetMapping("/all/a4")
+        public List<Map<String, Object>> getTest4() {
+        return scoreService.getAll();
+    }
 }
